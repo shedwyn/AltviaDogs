@@ -6,6 +6,7 @@ from django.db import models
 
 class Dog(models.Model):
     """Dog Descriptors"""
+    # eventually want to add ImageField, URL (for IG or FB link)
 
     name = models.CharField(max_length=15)
     owner = models.ForeignKey('Owner')
@@ -39,7 +40,7 @@ class Owner(models.Model):
 
 
 class RecordFile(models.Model):
-    """Record of Shout-out or 'oopsie'
+    """Record of Shout-out or Oopsie
 
     links to Dog and Owner
     """
@@ -49,4 +50,7 @@ class RecordFile(models.Model):
     )
 
     title = models.CharField(max_length=50)
+    dogs = models.ManyToMany(Dog)
+    date = models.DateField()
     rec_type = models.Charfield(choices=REC_TYPE_CHOICES)
+    description = models.TextField()
