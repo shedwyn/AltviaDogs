@@ -26,31 +26,33 @@ class Owner(models.Model):
 
     name = models.CharField(max_length=40)
     email = models.EmailField()
-    slack = models.CharField()
+    # slack = models.CharField()
 
     def __str__(self):
         """docstring"""
         return 'Owner_str({}, {}, {})', format(
-            self.id, self.name, self.email, self.slack)
+            self.id, self.name, self.email
+        )
 
     def __repr__(self):
         """docstring"""
         return 'Owner_repr({!r}, {!r}, {!r})'.format(
-            self.id, self.name, self.email, self.slack)
+            self.id, self.name, self.email
+        )
 
 
-class RecordFile(models.Model):
-    """Record of Shout-out or Oopsie
-
-    links to Dog and Owner
-    """
-
-    REC_TYPE_CHOICES = (
-        ('SO', 'Shout-Out'), ('O', 'Oopsie')
-    )
-
-    title = models.CharField(max_length=50)
-    dogs = models.ManyToMany(Dog)
-    date = models.DateField()
-    rec_type = models.Charfield(choices=REC_TYPE_CHOICES)
-    description = models.TextField()
+# class RecordFile(models.Model):
+#    """Record of Shout-out or Oopsie
+#
+#    links to Dog and Owner
+#    """
+#
+#    REC_TYPE_CHOICES = (
+#        ('SO', 'Shout-Out'), ('O', 'Oopsie')
+#    )
+#
+#    title = models.CharField(max_length=50)
+#    dogs = models.ManyToMany(Dog)
+#    date = models.DateField()
+#    rec_type = models.Charfield(choices=REC_TYPE_CHOICES)
+#    description = models.TextField()
