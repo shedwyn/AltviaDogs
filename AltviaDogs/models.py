@@ -4,25 +4,8 @@
 from django.db import models
 
 
-class Dog(models.Model):
-    """Dog Descriptors"""
-    # eventually want to add ImageField, URL (for IG or FB link)
-
-    name = models.CharField(max_length=15)
-    owner = models.ForeignKey(Owner)
-
-    def __str__(self):
-        """docstring"""
-        return 'Dog_str({}, {}, {})'.format(self.id, self.name, self.owner)
-
-    def __repr__(self):
-        """docstring"""
-        return 'Dog_repr({!r}, {!r}, {!r})'.format(
-            self.id, self.name, self.owner)
-
-
 class Owner(models.Model):
-    """Owner descriptors, will supplant with User eventually"""
+    """Owner descriptors, may replace with User eventually"""
 
     name = models.CharField(max_length=40)
     email = models.EmailField()
@@ -41,12 +24,28 @@ class Owner(models.Model):
         )
 
 
-class Dog_day(models.Model):
-    """Given visit day with dogs assigned"""
+class Dog(models.Model):
+    """Dog Elements, links to Owner/User, DogDay, eventually to DogRecord"""
+    # eventually want to add ImageField, URL (for IG or FB link)
+
+    name = models.CharField(max_length=15)
+    owner = models.ForeignKey(Owner)
+
+    def __str__(self):
+        """docstring"""
+        return 'Dog_str({}, {}, {})'.format(self.id, self.name, self.owner)
+
+    def __repr__(self):
+        """docstring"""
+        return 'Dog_repr({!r}, {!r}, {!r})'.format(
+            self.id, self.name, self.owner)
+
+
+class DogDay(models.Model):
+    """Given visit day with dogs assigned, link to Dog"""
 
     date_of_record = models.DateField(auto_now=False, auto_now_add=False)
     dogs = models.ManytoManyField(Dog)
-
 
 
 # class RecordFile(models.Model):

@@ -18,4 +18,12 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^index_page$', views.render_index_page, name='index_page'),
+    # will initially only have welcome and select datetime
+    # pop up "create Tuesday, May 24, 2018"? yes/no, then create new dog_day
+    # url(r'^dog_day$',views.render_dog_day,name='dog_day'),
+    # view the 7 slots and any names associated with that day
+    # url(r'^new_dog$,views.render_new_dog, name='new_dog'),
+    # add new dog screen, needs selection list for Owners (added by Admin)
+    # eventually will have ability to add a record to an individual dog
 ]
