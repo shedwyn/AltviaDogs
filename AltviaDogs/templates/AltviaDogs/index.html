@@ -13,15 +13,21 @@
     </head>
     <body>
       <h1>Welcome to Dog Days, the Dog Management Application</h1>
+      <!-- div Today's Date Display -->
       <div>
         <h2> These are the dogs at work today:</h2>
         <!-- INSERT LIST OF DOGS AT WORK TODAY -->
       </div>
-      <div>
+      <!-- /div Today's Date Display -->
+      <!-- form CHANGE DATE DISPLAY -->
+      <form>
         <h2>Select or Enter the date you want to view/edit</h2>
+        <label for="date-choice"> Select/Enter Date:</label>
+        <input type="date" name="date-choice">
         <!-- Insert Entry Field and Calendar Widget -->
         <!-- GO Button -->
-      </div>
+      </form>
+      <!-- /form CHANGE DATE DISPLAY -->
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
