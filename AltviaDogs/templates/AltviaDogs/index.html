@@ -17,10 +17,14 @@
       <div>
         <h2> These are the dogs at work today:</h2>
         <!-- INSERT LIST OF DOGS AT WORK TODAY -->
+        <!-- needs correct call cue to server asking for today's schedule -->
+        <!-- if day does not exist, a day record for today will create -->
+        <!-- figure way to limit to weekdays (sat&sun pull mon) -->
       </div>
       <!-- /div Today's Date Display -->
       <!-- form CHANGE DATE DISPLAY -->
-      <form>
+      <form action="/login" method="post">
+        <!-- added action & method after reading web tip -->
         <h2>Select or Enter the date you want to view/edit</h2>
         <label for="date-choice"> Select/Enter Date:</label>
         <input type="date" name="date-choice">
