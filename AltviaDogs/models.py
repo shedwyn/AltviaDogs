@@ -29,7 +29,7 @@ class Dog(models.Model):
     # eventually want to add ImageField, URL (for IG or FB link)
 
     name = models.CharField(max_length=15)
-    owner = models.ForeignKey(Owner)
+    owner = models.ForeignKey(Owner, on_delete=models.PROTECT)
 
     def __str__(self):
         """docstring"""
@@ -45,7 +45,7 @@ class DogDay(models.Model):
     """Given visit day with dogs assigned, link to Dog"""
 
     date_of_record = models.DateField(auto_now=False, auto_now_add=False)
-    dogs = models.ManytoManyField(Dog)
+    dogs = models.ManyToManyField(Dog)
 
 
 # class RecordFile(models.Model):
