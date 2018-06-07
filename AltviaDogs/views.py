@@ -14,5 +14,10 @@ from django.shortcuts import render
 from . import logic
 from . import settings
 
+
 def render_index_page():
     print('foo')
+
+
+def index(request):
+    return HttpResponse('system test')

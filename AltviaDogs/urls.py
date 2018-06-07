@@ -15,11 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.urls import include, path
 from . import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^index_page$', views.render_index_page, name='index_page'),
+    # url(r'^admin/', admin.site.urls),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', views.index, name='index')
+    # url(r'^index_page$', views.render_index_page, name='index_page'),
     # will initially only have welcome and select datetime
     # pop up "create Tuesday, May 24, 2018"? yes/no, then create new dog_day
     # url(r'^dog_day$',views.render_dog_day,name='dog_day'),
