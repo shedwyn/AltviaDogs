@@ -1,3 +1,5 @@
+from django.contrib import admin
+
 """Administrator Registration Document"""
 
 from django.contrib import admin
