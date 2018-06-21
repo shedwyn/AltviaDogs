@@ -6,7 +6,7 @@ __pycache__
 venv
 
 # Django Default DB
-db.postgressql
+db.postgresql
 
 # Django Staged Static Files
 staticfiles
