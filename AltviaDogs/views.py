@@ -8,14 +8,16 @@ Includes use of User to authenticate and authorize.
 from django.http import HttpResponse
 # from django.http import HttpResponseRedirect
 # from django.http import JsonResponse
-# from django.shortcuts import render
+from django.shortcuts import render
 # from . import logic
 # from . import settings
 from .models import Dog
 
 
-def render_index_page():
-    print('foo')
+def render_index_page(request):
+    """render home/menu page with all base data"""
+    page_fill = {}
+    return render(request, 'AltviaDogs/index.html', page_fill)
 
 
 def index(request):
