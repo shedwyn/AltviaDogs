@@ -13,7 +13,7 @@ class Owner(models.Model):
 
     def __str__(self):
         """docstring"""
-        return 'Owner_str({}, {}, {})', format(
+        return 'Owner_str({}, {}, {})'.format(
             self.id, self.name, self.email
         )
 

@@ -1,11 +1,10 @@
-from django.contrib import admin
-
 """Administrator Registration Document"""
 
-from django.contrib import admin
 
+from django.contrib import admin
 from . import models
 
-# admin.site.register(models.Person)
-# admin.site.register(models.Descriptor)
-# admin.site.register(models.Incident)
+
+admin.site.register(models.Dog)
+admin.site.register(models.Owner)
+# admin.site.register(models.DogDay)
