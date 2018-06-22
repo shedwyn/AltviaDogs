@@ -7,6 +7,7 @@ venv
 
 # Django Default DB
 db.postgresql
+migrations
 
 # Django Staged Static Files
 staticfiles
