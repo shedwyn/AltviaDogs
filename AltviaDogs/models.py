@@ -47,6 +47,11 @@ class DogDay(models.Model):
     date_of_record = models.DateField(auto_now=False, auto_now_add=False)
     dogs = models.ManyToManyField(Dog)
 
+    def __str__(self):
+        """docstring"""
+        return 'DogDay_str({},{},{})'.format(
+            self.id, self.date_of_record, self.dogs)
+
 
 # class RecordFile(models.Model):
 #    """Record of Shout-out or Oopsie
