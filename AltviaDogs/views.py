@@ -12,11 +12,12 @@ from django.shortcuts import render
 from . import logic
 # from . import settings
 from .models import Dog
+from datetime import date
 
 
 def render_index_page(request):
     """render home/menu page with all base data"""
-    date = logic.select_and_test_date
+    date = logic.select_and_test_date('today')
     dogs = logic.grab_list_of_dogs
     page_fill = {'date': date, 'dogs': dogs}
     return render(request, 'AltviaDogs/index.html', page_fill)

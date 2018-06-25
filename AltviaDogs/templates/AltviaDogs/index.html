@@ -14,15 +14,14 @@
     <body>
       <h1>Welcome to Dog Days, the Dog Management Application</h1>
       <!-- div Today's Date Display -->
-      <div name="dogs">
+      <div>
         <h2> These are the dogs at work today:</h2>
-        {% for dog in dogs %}
-        <ol>{{dog}}</ol>}
-        {% endfor %}
-        <!-- INSERT LIST OF DOGS AT WORK TODAY -->
-        <!-- needs correct call cue to server asking for today's schedule -->
-        <!-- if day does not exist, a day record for today will create -->
-        <!-- figure way to limit to weekdays (sat&sun pull mon) -->
+          <p name="date">Today's Date: {{date}}</p>
+          <p name="dogs">
+            {% for dog in dogs %}
+            <ol>{{dog}}</ol>}
+            {% endfor %}
+          </p>
       </div>
       <!-- /div Today's Date Display -->
       <!-- form CHANGE DATE DISPLAY -->
