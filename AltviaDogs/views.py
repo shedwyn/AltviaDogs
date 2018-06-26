@@ -18,6 +18,8 @@ from datetime import date
 def render_index_page(request):
     """render home/menu page with all base data"""
     date = logic.determine_correct_date(date.today())
+    # stub - can I dip into a variable from another module?
+    weekday = logic.list_of_weekday_values[weekday(year, month, newday)]
     dogs = logic.grab_list_of_dogs(date)
     page_fill = {'date': date, 'dogs': dogs}
     return render(request, 'AltviaDogs/index.html', page_fill)

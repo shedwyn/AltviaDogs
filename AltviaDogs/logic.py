@@ -14,33 +14,25 @@ def find_weekday_from_calendar(year, month, day):
     return weekday(year, month, day)
 
 
-def move_date_to_monday(day, day_val):
-    if day_val = 5:
-        return day + 2
-    elif day_val = 6:
-        return day + 1
+def move_date_if_wknd(date, day_val):
+    if day_val == 5:
+        return date + 2
+    elif day_val == 6:
+        return date + 1
     else:
-        return day
-
+        return date
 
 def determine_correct_date(date_value):
-    if date = 'today':
-        year = date.today().year
-        month = date.today().month
-        day = date.today().day
-    else:
-        year = '2018'
-        month = '6'
-        day = '22'
-    weekday = determine_weekday(year, month, day)
-    # need to find date and Days
-    # then test for Sat or sun
-    calendar.weekday(date.today().year, date.today().month, date.today().day)
-    current_date = 'date corrected'
-    return current_date
+    year = datevalue.year
+    month = datevalue.month
+    day = datevalue.day
+    day_val = find_weekday_from_calendar(year, month, day)
+    newday = move_date_to_monday(day, day_val)
+    date_value = (year, month, newday)
+    return date_value
 
 
- def grab_list_of_dogs(date_value):
+def grab_list_of_dogs(date_value):
     date = select_and_test_date()
     # test to see if record exists for this date
     # if not - create date
