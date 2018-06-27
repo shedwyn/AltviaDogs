@@ -23,20 +23,22 @@ def move_date_if_wknd(date, day_val):
         return date
 
 def determine_correct_date(date_value):
-    year = datevalue.year
-    month = datevalue.month
-    day = datevalue.day
+    year = date_value.year
+    month = date_value.month
+    day = date_value.day
     day_val = find_weekday_from_calendar(year, month, day)
-    newday = move_date_to_monday(day, day_val)
-    date_value = (year, month, newday)
+    newday = move_date_if_wknd(day, day_val)
+    date_value = date(year, month, newday)
     return date_value
 
 
 def grab_list_of_dogs(date_value):
-    date = select_and_test_date()
+    date = determine_correct_date(date_value)
     # test to see if record exists for this date
     # if not - create date
-    dogs = Dog.objects.filter(date)
+    dog_day = DogDay.objects.filter(date_of_record=date)
+    all_dogs = Dog.objects.filter(dogday=dog_day)
+    dogs = ', '.join([d.dogs for d in all_dogs])
     # probably need test for if no dogs then return 'no dogs'
     # create sort order within logic (assign dog 1, dog 2, dog 3 for layout?)
     return dogs
