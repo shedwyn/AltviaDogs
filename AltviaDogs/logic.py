@@ -32,13 +32,18 @@ def determine_correct_date(date_value):
     return date_value
 
 
+def format_list_of_dogs(dogday_value):
+    return dog_names
+
 def grab_list_of_dogs(date_value):
-    date = determine_correct_date(date_value)
+    selected_date = determine_correct_date(date_value)
     # test to see if record exists for this date
-    # if not - create date
-    dog_day = DogDay.objects.filter(date_of_record=date)
-    all_dogs = Dog.objects.filter(dogday=dog_day)
-    dogs = ', '.join([d.dogs for d in all_dogs])
+    # if not - create date or return message?
+    # more flexible - return message on Sat or Sun
+    # and return "no dogs message if no dogs"
+    dog_day = DogDay.objects.filter(date_of_record=selected_date)
+    # all_dogs = dog_day.dogs.all()
+    # dogs = ', '.join(d.name for d in all_dogs)
     # probably need test for if no dogs then return 'no dogs'
     # create sort order within logic (assign dog 1, dog 2, dog 3 for layout?)
-    return dogs
+    return dog_day
