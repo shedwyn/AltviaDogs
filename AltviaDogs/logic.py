@@ -5,6 +5,7 @@ from calendar import weekday
 from AltviaDogs.models import Dog
 from AltviaDogs.models import Owner
 from AltviaDogs.models import DogDay
+from AltviaDogs import models
 
 list_of_weekday_values = {0:'Monday', 1:'Tuesday', 2:'Wednesday', 3:'Thursday', 4:'Friday', 5:'Saturday', 6:'Sunday'}
 
@@ -41,9 +42,10 @@ def grab_list_of_dogs(date_value):
     # if not - create date or return message?
     # more flexible - return message on Sat or Sun
     # and return "no dogs message if no dogs"
-    dog_day = DogDay.objects.filter(date_of_record=selected_date)
-    # all_dogs = dog_day.dogs.all()
-    # dogs = ', '.join(d.name for d in all_dogs)
+    dog_day = DogDay.objects.get(date_of_record__exact=selected_date)
+    available_dogs = dog_day.dogs.all()
+    # code below - can this be moved to index.html so it can be ordered list?
+    dog_list = ', '.join(d.name for d in available_dogs)
     # probably need test for if no dogs then return 'no dogs'
     # create sort order within logic (assign dog 1, dog 2, dog 3 for layout?)
-    return dog_day
+    return dog_list
