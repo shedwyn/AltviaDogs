@@ -1,27 +1,28 @@
+#Pre-parsed Python
 __pycache__
 *.pyc
 
-
+#Virtualenvs
 venv
 
-
+#Django Default DB
 db.postgresql
 migrations
 
-
+#Django Staged Static Files
 staticfiles
 
-
+#Django User-uploaded Files
 mediafiles
 
-
+#Secrets
 .env
 secrets.py
 
-
+#macOS
 .DS_Store
 
-
+#Internal Files
 Development_Notes.md
 HowToInstall.md
 scrapheap.py
