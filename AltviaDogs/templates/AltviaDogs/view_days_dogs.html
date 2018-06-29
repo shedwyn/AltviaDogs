@@ -9,29 +9,36 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-      <title>Home Page for Dog Days</title>
+      <title>View Selected Day's Dogs</title>
     </head>
     <body>
-      <h1>Welcome to Dog Days, the Dog Management Application</h1>
+      <h1>Single Day's List of Dogs</h1>
       <!-- div Today's Date Display -->
       <div>
       <h2> These are the dogs at work today:</h2>
+        <p hidden> DogDay db ID: {{dog_day_id}} (should be hidden by HTML5) </p>
         <p><h3>Today's Date: {{ date }}</h3></p>
-        <p>figure out how to make this appear only on Sat & Sun<i>We don't work on weekends, so you'll have to be satisfied with Monday's list</i></p>
         <p>
           <p><h3>{{ dogs }}</h3></p>
         </p>
       </div>
       <!-- /div Today's Date Display -->
+      <!-- div Navigation Buttons -->
+      <div> Use Buttons to move to the next/previous work days
+        <div>Arrow, move back one day</div>
+        <div>Arrow, move forward one day</div>
+      </div>
+      <!-- /div Navigation Buttons -->
+      <!-- form CHANGE DATE DISPLAY -->
       <div>
-        <!-- form CHANGE DATE DISPLAY -->
         <div><form action="/login" method="post">
           <!-- added action & method after reading web tip -->
-          <h2>Select or Enter the date you want to view/edit</h2>
+          <h2>Want to go forward or backward more than a couple of days?</h2>
+          <h2>Select or Enter the date you want to view/edit:</h2>
           <label for="date-choice"> Select/Enter Date:</label>
           <input type="date" name="date-choice">
           <div>Submit Button</div>
-        </form></div>
+      </form></div>
       </div>
       <!-- /form CHANGE DATE DISPLAY -->
       <!-- Optional JavaScript -->
