@@ -34,7 +34,6 @@ def determine_correct_date(date_value):
 
 
 def grab_list_of_dogs(date_value):
-    # selected_date = determine_correct_date(date_value)
     # existence = verify_day_exists(selected_date)
     # if existence = True:
     dog_day = DogDay.objects.get(date_of_record__exact=date_value)
