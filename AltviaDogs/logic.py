@@ -33,12 +33,13 @@ def determine_correct_date(date_value):
     return date_value
 
 
-def format_list_of_dogs(dogday_value):
-    return dog_names
-
 def grab_list_of_dogs(date_value):
-    selected_date = determine_correct_date(date_value)
-    dog_day = DogDay.objects.get(date_of_record__exact=selected_date)
+    # selected_date = determine_correct_date(date_value)
+    # existence = verify_day_exists(selected_date)
+    # if existence = True:
+    dog_day = DogDay.objects.get(date_of_record__exact=date_value)
+    # else:
+    # dog_day = create_dog_day(date_value)
     available_dogs = dog_day.dogs.all()
     dog_list = ', '.join(d.name for d in available_dogs)
     return dog_list
