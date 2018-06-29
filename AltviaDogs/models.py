@@ -44,7 +44,7 @@ class Dog(models.Model):
 class DogDay(models.Model):
     """Given visit day with dogs assigned, link to Dog"""
 
-    date_of_record = models.DateField(auto_now=False, auto_now_add=False)
+    date_of_record = models.DateField(auto_now=False, auto_now_add=False, unique=True)
     dogs = models.ManyToManyField(Dog)
 
     def __str__(self):
