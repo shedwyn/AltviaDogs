@@ -31,14 +31,15 @@
       <!-- /div Navigation Buttons -->
       <!-- form CHANGE DATE DISPLAY -->
       <div>
-        <div><form action="/login" method="post">
+        <div><form action="/viewscreen" method="post">
+          {% csrf_token %}
+          <!-- remove action="/login" from form for now -->
           <!-- added action & method after reading web tip -->
-          <h2>Want to go forward or backward more than a couple of days?</h2>
-          <h2>Select or Enter the date you want to view/edit:</h2>
-          <label for="date-choice"> Select/Enter Date:</label>
-          <input type="date" name="date-choice">
-          <div>Submit Button</div>
-      </form></div>
+          <h2>Select or Enter the date you want to view/edit</h2>
+          <label for="date_choice"> Select/Enter Date:</label>
+          <input type="date" name="date_choice">
+          <input type="submit" class="btn btn-default" value="SUBMIT DATE">
+        </form></div>
       </div>
       <!-- /form CHANGE DATE DISPLAY -->
       <!-- Optional JavaScript -->
