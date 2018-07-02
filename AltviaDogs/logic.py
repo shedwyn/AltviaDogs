@@ -68,6 +68,8 @@ def verify_day_exists(date_instance):
 
 def create_new_dog_day(date_instance):
     """Create new instance of a DogDay."""
+    new_dog_day = DogDay(date_of_record=date_instance)
+    new_dog_day.save()
     return True
 
 
@@ -78,11 +80,11 @@ def grab_list_of_dogs(date_instance):
     take in date instance, get list of dogs in DogDay for that date, format
     into comma sep string, return string of dog names
     """
-    # existence = verify_day_exists(selected_date)
-    # if existence = True:
-    dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
-    # else:
-    # dog_day = create_dog_day(date_value)
+    existence = verify_day_exists(date_instance)
+    if existence is True:
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+    else:
+        dog_day = create_new_dog_day(date_instance)
     available_dogs = dog_day.dogs.all()
     dog_list = ', '.join(d.name for d in available_dogs)
     return dog_list
