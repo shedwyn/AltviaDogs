@@ -39,7 +39,7 @@ def render_view_days_dogs_page(request):
     Take in in date and returns list of that day's dogs
     """
     # how will date be received from User - in what format?
-    selected_date = date(request.selected_date)
+    selected_date = request.POST['date_choice']
     corrected_date = logic.determine_correct_date(selected_date)
     dogs = logic.grab_list_of_dogs(corrected_date)
     # dog_day_id = logic.grab_dog_day_id_for_selected_date(corrected_date)
