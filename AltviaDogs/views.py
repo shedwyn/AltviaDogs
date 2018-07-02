@@ -38,7 +38,6 @@ def render_view_days_dogs_page(request):
 
     Take in in date and returns list of that day's dogs
     """
-    # how will date be received from User - in what format?
     raw_date = tuple(
         int(item) for item in request.POST['date_choice'].split('-')
     )

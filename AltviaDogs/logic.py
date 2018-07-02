@@ -2,7 +2,7 @@
 
 from datetime import date
 from calendar import weekday
-# from AltviaDogs.models import Dog
+from AltviaDogs.models import Dog
 # from AltviaDogs.models import Owner
 from AltviaDogs.models import DogDay
 
@@ -59,8 +59,7 @@ def verify_day_exists(date_instance):
 
     take in an instance of date and return boolean value
     """
-    list_of_dates_available = DogDay.objects.date_of_record.all()
-    if date_instance in list_of_dates_available:
+    if DogDay.objects.filter(date_of_record=date_instance).exists():
         return True
     else:
         return False
@@ -86,5 +85,8 @@ def grab_list_of_dogs(date_instance):
     else:
         dog_day = create_new_dog_day(date_instance)
     available_dogs = dog_day.dogs.all()
-    dog_list = ', '.join(d.name for d in available_dogs)
+    if available_dogs.count() == 0:
+        dog_list = 'Sorry, there are no dogs here today'
+    else:
+        dog_list = ', '.join(d.name for d in available_dogs)
     return dog_list
