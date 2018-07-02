@@ -30,7 +30,9 @@
       <!-- /div Today's Date Display -->
       <div>
         <!-- form CHANGE DATE DISPLAY -->
-        <div><form action="/login" method="post">
+        <div><form action="/viewscreen" method="post">
+          {% csrf_token %}
+          <!-- remove action="/login" from form for now -->
           <!-- added action & method after reading web tip -->
           <h2>Select or Enter the date you want to view/edit</h2>
           <label for="date_choice"> Select/Enter Date:</label>
