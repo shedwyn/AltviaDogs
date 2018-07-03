@@ -26,7 +26,7 @@ def render_index_page(request):
     curr_date = logic.determine_correct_date(date.today())
     # stub - can I dip into a variable from another module?
     # weekday = logic.list_of_weekday_values[weekday(year, month, newday)]
-    dogs = logic.grab_list_of_dogs(curr_date)
+    dogs = logic.return_formatted_list_of_dogs(curr_date)
     page_fill = {'date': curr_date, 'dogs': dogs}
     # page_fill = {'date': curr_date, 'dogs': dogs, 'weekday':weekday}
     return render(request, 'AltviaDogs/index.html', page_fill)
@@ -43,8 +43,14 @@ def render_view_days_dogs_page(request):
     )
     formatted_date = date(raw_date[0], raw_date[1], raw_date[2])
     corrected_date = logic.determine_correct_date(formatted_date)
-    dogs = logic.grab_list_of_dogs(corrected_date)
+    dog_list = logic.return_formatted_list_of_dogs(corrected_date)
     # dog_day_id = logic.grab_dog_day_id_for_selected_date(corrected_date)
-    page_fill = {'date': corrected_date, 'dogs': dogs}
+    page_fill = {'date': corrected_date, 'dog_list': dog_list}
+    # page_fill = {
+    # 'date': corrected_date,
+    # 'dog_list': dog_list,
+    # 'scheduled_dogs': curr_dogs,
+    # 'not_scheduled_dogs': not_scheduled_dogs
+    # }
     # page_fill = {'date':corrected_date, 'dogs':dogs, 'dog_day_id':dog_day_id}
     return render(request, 'AltviaDogs/view_days_dogs.html', page_fill)
