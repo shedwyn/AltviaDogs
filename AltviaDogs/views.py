@@ -13,7 +13,7 @@ Includes use of User to authenticate and authorize.
 from django.shortcuts import render
 from . import logic
 # from . import settings
-# from .models import Dog
+from .models import Dog
 from datetime import date
 
 
@@ -57,3 +57,17 @@ def render_view_days_dogs_page(request):
     # }
     # page_fill = {'date':corrected_date, 'dogs':dogs, 'dog_day_id':dog_day_id}
     return render(request, 'AltviaDogs/view_days_dogs.html', page_fill)
+
+
+def render_confirm_dog_change_page(request):
+    """Render the confirmation page for dog changes
+
+    take in request containing the dog instance selected from the View page"
+    """
+    dogs_to_remove = request.POST['dogs_to_remove']
+    dogs_to_add = request.POST['dogs_to_add']
+    curr_date = request.POST['date']
+
+
+    page_fill = {'dog_names': dog_names, 'type_note': type_note}
+    return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)

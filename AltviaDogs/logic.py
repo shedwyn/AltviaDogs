@@ -83,6 +83,14 @@ def return_correct_dog_day(date_instance):
     return dog_day
 
 
+def remove_dog_from_dog_day(single_dog):
+    return True
+
+
+def add_dog_to_dog_day(single_dog):
+    return True
+
+
 def grab_scheduled_dogs(date_instance):
     """
     Find and return list of dogs for a given date.

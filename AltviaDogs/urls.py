@@ -26,7 +26,12 @@ urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     path('admin/', admin.site.urls, name='admin'),
     url(r'^$', views.render_index_page, name='index'),
-    url(r'^viewscreen$', views.render_view_days_dogs_page, name='viewscreen')
+    url(r'^viewscreen$', views.render_view_days_dogs_page, name='viewscreen'),
+    url(
+        r'^confirmation$',
+        views.render_confirm_dog_change_page,
+        name='confirmation'
+    )
     # pop up "create Tuesday, May 24, 2018"? yes/no, then create new dog_day
     # url(r'^dog_day$',views.render_dog_day,name='dog_day'),
     # view the 7 slots and any names associated with that day
