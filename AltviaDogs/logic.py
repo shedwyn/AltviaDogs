@@ -72,6 +72,16 @@ def create_new_dog_day(date_instance):
     return True
 
 
+def return_correct_days_dogs(date_instance, existence):
+    """Find group of dogs for specific date."""
+    if existence is True:
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+    else:
+        create_new_dog_day(date_instance)
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+    return dog_day
+
+
 def grab_list_of_dogs(date_instance):
     """
     Find and return list of dogs for a given date.
@@ -80,12 +90,19 @@ def grab_list_of_dogs(date_instance):
     into comma sep string, return string of dog names
     """
     existence = verify_day_exists(date_instance)
-    if existence is True:
-        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
-    else:
-        create_new_dog_day(date_instance)
-        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+    dog_day = return_correct_days_dogs(date_instance, existence)
     available_dogs = dog_day.dogs.all()
+    return available_dogs
+
+
+def return_formatted_list_of_dogs(date_instance):
+    """
+    Return correct string of dogs for view.
+
+    Take in query set of dogs for specific day, if empty set, return
+    appropriate sentence, otherwise, return a comma separated list of dogs
+    """
+    available_dogs = grab_list_of_dogs(date_instance)
     if available_dogs.count() == 0:
         dog_list = 'Sorry, there are no dogs here today'
     else:
