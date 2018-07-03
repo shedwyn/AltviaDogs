@@ -20,14 +20,20 @@
       <h1>Welcome to Dog Days, the Dog Management Application</h1>
       <!-- div Today's Date Display -->
       <div>
-      <h2> These are the dogs at work today:</h2>
-        <p><h3>Today's Date: {{ date }}</h3></p>
-        <p>figure out how to make this appear only on Sat & Sun<i>We don't work on weekends, so you'll have to be satisfied with Monday's list</i></p>
+      <h2><i>Today's Date: {{ date }}</i></h2>
+        <p><h3>These are the dogs at work today:</h3></p>
+        <!--figure out how to make this appear only on Sat & Sun -->
+        <!--<p><i>We don't work on weekends, so you'll have to be satisfied
+        with Monday's list</i></p>-->
         <p>
-          <p><h3>{{ dogs }}</h3></p>
+          <p><h2>{{ dogs }}</h2></p>
         </p>
       </div>
       <!-- /div Today's Date Display -->
+      <!--Add/Remove Dog -->
+      <div>Add Dog to Today</div>
+      <div>Remove Dog from Today</div>
+      <!-- /Add/Remove Dog -->
       <div>
         <!-- form CHANGE DATE DISPLAY -->
         <div><form action="/viewscreen" method="post">

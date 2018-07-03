@@ -83,7 +83,8 @@ def grab_list_of_dogs(date_instance):
     if existence is True:
         dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
     else:
-        dog_day = create_new_dog_day(date_instance)
+        create_new_dog_day(date_instance)
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
     available_dogs = dog_day.dogs.all()
     if available_dogs.count() == 0:
         dog_list = 'Sorry, there are no dogs here today'
