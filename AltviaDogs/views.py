@@ -34,9 +34,10 @@ def render_index_page(request):
 
 def render_view_days_dogs_page(request):
     """
-    Render the view_days_dogs pageself.
+    Render the view_days_dogs page.
 
-    Take in in date and returns list of that day's dogs
+    Take in in date and returns list of that day's dogs along with lists of
+    dogs scheduled and not-scheduled for editing purposes
     """
     raw_date = tuple(
         int(item) for item in request.POST['date_choice'].split('-')
@@ -44,8 +45,8 @@ def render_view_days_dogs_page(request):
     formatted_date = date(raw_date[0], raw_date[1], raw_date[2])
     corrected_date = logic.determine_correct_date(formatted_date)
     dog_list = logic.return_formatted_list_of_dogs(corrected_date)
-    scheduled_dogs = logic.grab_list_of_scheduled_dogs(corrected_date)
-    not_scheduled_dogs = logic.grab_list_of_not_scheduled_dogs(corrected_date)
+    scheduled_dogs = logic.grab_scheduled_dogs(corrected_date)
+    not_scheduled_dogs = logic.grab_not_scheduled_dogs(corrected_date)
     # dog_day_id = logic.grab_dog_day_id_for_selected_date(corrected_date)
     page_fill = {'date': corrected_date, 'dog_list': dog_list}
     # page_fill = {
