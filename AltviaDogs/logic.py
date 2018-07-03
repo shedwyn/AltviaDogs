@@ -82,7 +82,7 @@ def return_correct_days_dogs(date_instance, existence):
     return dog_day
 
 
-def grab_list_of_dogs(date_instance):
+def grab_list_of_scheduled_dogs(date_instance):
     """
     Find and return list of dogs for a given date.
 
@@ -102,9 +102,10 @@ def return_formatted_list_of_dogs(date_instance):
     Take in query set of dogs for specific day, if empty set, return
     appropriate sentence, otherwise, return a comma separated list of dogs
     """
-    available_dogs = grab_list_of_dogs(date_instance)
+    available_dogs = grab_list_of_scheduled_dogs(date_instance)
     if available_dogs.count() == 0:
         dog_list = 'Sorry, there are no dogs here today'
+        # amuse self later with global list and randomized result pull
     else:
         dog_list = ', '.join(d.name for d in available_dogs)
     return dog_list
