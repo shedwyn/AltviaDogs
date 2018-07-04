@@ -105,7 +105,7 @@ def grab_scheduled_dogs(date_instance):
     on that DogDay and return
     """
     dog_day = return_correct_dog_day(date_instance)
-    scheduled_dogs = dog_day.dogs.all()
+    scheduled_dogs = dog_day.dogs.all().order_by('name')
     return scheduled_dogs
 
 
@@ -117,7 +117,7 @@ def grab_not_scheduled_dogs(date_instance):
     scheduled on that DogDay and return
     """
     dog_day = return_correct_dog_day(date_instance)
-    available_dogs = dog_day.dogs.all()
+    available_dogs = dog_day.dogs.all().order_by('name')
     return available_dogs
 
 
