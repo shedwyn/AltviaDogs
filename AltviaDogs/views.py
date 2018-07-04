@@ -13,7 +13,7 @@ Includes use of User to authenticate and authorize.
 from django.shortcuts import render
 from . import logic
 # from . import settings
-from .models import Dog
+# from .models import Dog
 from datetime import date
 
 
@@ -48,13 +48,13 @@ def render_view_days_dogs_page(request):
     scheduled_dogs = logic.grab_scheduled_dogs(corrected_date)
     not_scheduled_dogs = logic.grab_not_scheduled_dogs(corrected_date)
     # dog_day_id = logic.grab_dog_day_id_for_selected_date(corrected_date)
-    page_fill = {'date': corrected_date, 'dog_list': dog_list}
-    # page_fill = {
-    # 'date': corrected_date,
-    # 'dog_list': dog_list,
-    # 'scheduled_dogs': curr_dogs,
-    # 'not_scheduled_dogs': not_scheduled_dogs
-    # }
+    # page_fill = {'date': corrected_date, 'dog_list': dog_list}
+    page_fill = {
+        'date': corrected_date,
+        'dog_list': dog_list,
+        'scheduled_dogs': scheduled_dogs,
+        'not_scheduled_dogs': not_scheduled_dogs
+        }
     # page_fill = {'date':corrected_date, 'dogs':dogs, 'dog_day_id':dog_day_id}
     return render(request, 'AltviaDogs/view_days_dogs.html', page_fill)
 
