@@ -26,21 +26,34 @@
       <div>-------------------- Add or Remove a Dog --------------------</div>
       <!-- div Add/Remove Dog -->
       <div>
+        <!-- Add -->
         <div><form action="/confirmation_add" method="post">
           {% csrf_token %}
-          <!-- remove action="/login" from form for now -->
-          <!-- added action & method after reading web tip -->
-          <label for="dog_to_add">List of Dogs to Add:</label>
-          <input type="lists" name="dog_to_add">
-          <!-- needs formatting for lists -->
-          <input type="submit" class="btn btn-default" value="ADD DOG(S)">
+          <div>
+            <label for="dog_to_add">
+              List of Dogs to Add:
+              <select multiple="False" name="dog_to_add">
+                {% for d in scheduled_dogs%}
+                <option>{{d}}</option>
+              </select>
+              <!-- needs formatting for lists -->
+              <input type="submit" class="btn btn-default" value="ADD DOG">
+            </label>
+          </div>
         </form></div>
+        <!-- Remove -->
         <div><form action="/confirmation_remove" method="post">
           {% csrf_token %}
-          <label for="dog_to_remove">List of Dogs to Remove:</label>
-          <input type="lists" name="dog_to_remove">
-          <!-- needs formatting for lists -->
-          <input type="submit" class="btn btn-default" value="REMOVE DOG(S)">
+          <div>
+            <label for="dog_to_remove">List of Dogs to Remove:
+              <select multiple="False" name="dog_to_remove">
+                {% for d in not_scheduled_dogs %}
+                <option>{{d}}</option>
+                {% endfor %}
+              </select>
+              <input type="submit" class="btn btn-default" value="REMOVE DOG">
+            </label>
+          </div>
         </form></div>
       </div>
       <!-- /div Add/Remove Dog -->
