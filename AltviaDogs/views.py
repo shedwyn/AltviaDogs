@@ -59,15 +59,31 @@ def render_view_days_dogs_page(request):
     return render(request, 'AltviaDogs/view_days_dogs.html', page_fill)
 
 
-def render_confirm_dog_change_page(request):
-    """Render the confirmation page for dog changes
+def render_confirm_dog_change_page_add(request):
+    """Render the confirmation page for adding dogs.
+
+    take in request containing the dog instances selected from the View page"
+    """
+    dog_to_add = request.POST['dog_to_add']
+    type_note = 'added'
+    curr_date = request.POST['date']
+    dog_day = logic.return_correct_dog_day(curr_date)
+    logic.remove_dog_from_dog_day(dog_day, dog_to_add)
+    dog_names = dog_to_add.name
+    page_fill = {'dog_names': dog_names, 'type_note': type_note}
+    return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)
+
+
+def render_confirm_dog_change_page_remove(request):
+    """Render the confirmation page for dog changes.
 
     take in request containing the dog instance selected from the View page"
     """
-    dogs_to_remove = request.POST['dogs_to_remove']
-    dogs_to_add = request.POST['dogs_to_add']
+    dog_to_remove = request.POST['dog_to_remove']
+    type_note = 'removed'
     curr_date = request.POST['date']
-
-
+    dog_day = logic.return_correct_dog_day(curr_date)
+    logic.add_dog_to_dog_day(dog_day, dog_to_remove)
+    dog_names = dog_to_remove.name
     page_fill = {'dog_names': dog_names, 'type_note': type_note}
     return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)
