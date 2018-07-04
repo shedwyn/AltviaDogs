@@ -28,9 +28,14 @@ urlpatterns = [
     url(r'^$', views.render_index_page, name='index'),
     url(r'^viewscreen$', views.render_view_days_dogs_page, name='viewscreen'),
     url(
-        r'^confirmation$',
-        views.render_confirm_dog_change_page,
-        name='confirmation'
+        r'^confirmation_add$',
+        views.render_confirm_dog_change_page_add,
+        name='confirmation_add'
+    ),
+    url(
+        r'^confirmation_remove$',
+        views.render_confirm_dog_change_page_remove,
+        name='confirmation_remove'
     )
     # pop up "create Tuesday, May 24, 2018"? yes/no, then create new dog_day
     # url(r'^dog_day$',views.render_dog_day,name='dog_day'),

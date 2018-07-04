@@ -83,11 +83,17 @@ def return_correct_dog_day(date_instance):
     return dog_day
 
 
-def remove_dog_from_dog_day(single_dog):
+def remove_dog_from_dog_day(dog_day, single_dog):
+    """Remove one dog object from selected DogDay."""
+    dog_day.dogs.add(single_dog)
+    dog_day.save()
     return True
 
 
-def add_dog_to_dog_day(single_dog):
+def add_dog_to_dog_day(dog_day, single_dog):
+    """Add one dog object to selected DogDay."""
+    dog_day.dogs.remove(single_dog)
+    dog_day.save()
     return True
 
 
