@@ -2,7 +2,7 @@
 
 from datetime import date
 from calendar import weekday
-from AltviaDogs.models import Dog
+# from AltviaDogs.models import Dog
 # from AltviaDogs.models import Owner
 from AltviaDogs.models import DogDay
 
