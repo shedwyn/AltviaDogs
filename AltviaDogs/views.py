@@ -36,8 +36,9 @@ def render_view_days_dogs_page(request):
     """
     Render the view_days_dogs page.
 
-    Take in in date and returns list of that day's dogs along with lists of
-    dogs scheduled and not-scheduled for editing purposes
+    Take in in date checks to ensure it is not a weekend date then returns
+    formatted list of that day's dogs along with lists of dogs scheduled
+    and not-scheduled for editing purposes
     """
     raw_date = tuple(
         int(item) for item in request.POST['date_choice'].split('-')
@@ -54,8 +55,7 @@ def render_view_days_dogs_page(request):
         'dog_list': dog_list,
         'scheduled_dogs': scheduled_dogs,
         'not_scheduled_dogs': not_scheduled_dogs
-        }
-    # page_fill = {'date':corrected_date, 'dogs':dogs, 'dog_day_id':dog_day_id}
+    }
     return render(request, 'AltviaDogs/view_days_dogs.html', page_fill)
 
 

@@ -10,6 +10,7 @@ list_of_weekday_values = {
     0: 'Monday', 1: 'Tuesday', 2: 'Wednesday',
     3: 'Thursday', 4: 'Friday', 5: 'Saturday', 6: 'Sunday'
 }
+# ^ should this live within the class as a part of DogDay?
 
 
 def find_weekday_from_calendar(year, month, day):
