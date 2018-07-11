@@ -2,7 +2,7 @@
 
 from datetime import date
 from calendar import weekday
-# from AltviaDogs.models import Dog
+from AltviaDogs.models import Dog
 # from AltviaDogs.models import Owner
 from AltviaDogs.models import DogDay
 
@@ -73,21 +73,12 @@ def create_new_dog_day(date_instance):
     return True
 
 
-def return_correct_dog_day(date_instance):
-    """Return correct DogDay Object based on date."""
-    existence = verify_day_exists(date_instance)
-    if existence is True:
-        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
-    else:
-        create_new_dog_day(date_instance)
-        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
-    return dog_day
-
-
-def remove_dog_from_dog_day(dog_day, single_dog):
+def remove_dog_from_dog_day(dog_day_id, single_dog):
     """Remove one dog object from selected DogDay."""
-    dog_day.dogs.add(single_dog)
-    dog_day.save()
+    curr_dog_day = DogDay.objects.get(id=dog_day_id)
+    # curr_dog = Dog.objects.get(id=single_dog)
+    curr_dog_day.dogs.remove(Dog.objects.get(id=single_dog))
+    curr_dog_day.save()
     return True
 
 
@@ -98,41 +89,57 @@ def add_dog_to_dog_day(dog_day, single_dog):
     return True
 
 
+def grab_date_for_dog_day(dog_day_id):
+    """Return DogDay object's date."""
+    dog_day = DogDay.objects.get(id=dog_day_id)
+    return dog_day.date_of_record
+
+
+def grab_correct_dog_day(date_instance):
+    """Return correct DogDay Object based on date."""
+    existence = verify_day_exists(date_instance)
+    if existence is True:
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+    else:
+        create_new_dog_day(date_instance)
+        dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
+        return dog_day
+
+
 def grab_scheduled_dogs(date_instance):
     """
-    Find and return list of dogs for a given date.
+    Find and return group of dogs for a given date.
 
     take in date instance, get correct DogDay instance, pull all Dogs scheduled
     on that DogDay and return
     """
-    dog_day = return_correct_dog_day(date_instance)
+    dog_day = grab_correct_dog_day(date_instance)
     scheduled_dogs = dog_day.dogs.all().order_by('name')
     return scheduled_dogs
 
 
 def grab_not_scheduled_dogs(date_instance):
     """
-    Find and return list of dogs for a given date.
+    Find and return group of dogs for a given date.
 
     take in date instance, get correct DogDay instance, pull all Dogs not
     scheduled on that DogDay and return
     """
-    dog_day = return_correct_dog_day(date_instance)
+    dog_day = grab_correct_dog_day(date_instance)
     available_dogs = dog_day.dogs.all().order_by('name')
     return available_dogs
 
 
-def return_formatted_list_of_dogs(date_instance):
+def format_list_of_dogs(dogs):
     """
     Return correct string of dogs for view.
 
     Take in query set of dogs for specific day, if empty set, return
     appropriate sentence, otherwise, return a comma separated list of dogs
     """
-    available_dogs = grab_scheduled_dogs(date_instance)
-    if available_dogs.count() == 0:
+    if dogs.count() == 0:
         dog_list = 'Sorry, there are no dogs here today'
         # amuse self later with global list and randomized result pull
     else:
-        dog_list = ', '.join(d.name for d in available_dogs)
+        dog_list = ', '.join(d.name for d in dogs)
     return dog_list
