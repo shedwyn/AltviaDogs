@@ -9,25 +9,15 @@
       <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-      <title>View Selected Day's Dogs</title>
+      <title>Confirmation of Change Made</title>
     </head>
     <body>
-      <h1>Single Day's List of Dogs</h1>
-      <!-- div Today's Date Display -->
-      <div>
-      <h2><i>Today's Date: {{ date }}</i></h2>
-        <!--<p hidden> DogDay db ID: {{dog_day_id}} (should be hidden by HTML5) </p>-->
-        <p><h3>Here is the list of dogs for the day you selected:</h3></p>
-        <p>
-          <p><h3>{{ dog_list }}</h3></p>
-        </p>
+      <h1 id="main-header">You {{type_note}} {{date}} {{dog_names}}</h1>
+      <div><form action="index">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-default" value="RETURN HOME">
+      </form>
       </div>
-      <!-- /div Today's Date Display -->
-      <div>-------------------- Add or Remove a Dog --------------------</div>
-      <!-- div Add/Remove Dog -->
-      <div>Add Dog to Today</div>
-      <div>Remove Dog from Today</div>
-      <!-- /div Add/Remove Dog -->
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
