@@ -1,4 +1,10 @@
 """
+Designed and built by Erin 'Ernie' L. Fough.
+
+June 2018 (start)
+contact: shedwyn@gmail.com
+want to know when this was last updated?  See README.md.
+
 AltviaDogs URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:

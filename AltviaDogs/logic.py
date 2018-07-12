@@ -1,4 +1,11 @@
-"""All processing functions for rendering views.
+"""
+Designed and built by Erin 'Ernie' L. Fough.
+
+June 2018 (start)
+contact: shedwyn@gmail.com
+want to know when this was last updated?  See README.md.
+
+All processing functions for rendering views.
 
 All "grab" functions (grabbing entire usually grabbing object itself or query
 set or bundle of objects for many to many field) are called from Views.py

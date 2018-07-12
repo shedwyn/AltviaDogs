@@ -1,4 +1,10 @@
 """
+Designed and built by Erin 'Ernie' L. Fough.
+
+June 2018 (start)
+contact: shedwyn@gmail.com
+want to know when this was last updated?  See README.md.
+
 Page rendering functions for AltviaDogs.
 
 Includes use of User to authenticate and authorize.

@@ -1,4 +1,11 @@
 """
+Designed and built by Erin 'Ernie' L. Fough.
+
+June 2018 (start)
+contact: shedwyn@gmail.com
+want to know when this was last updated?  See README.md.
+
+
 Main Site URL Configuration.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,7 +26,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import include, path
-from . import views
+# from . import views
 
 urlpatterns = [
     path('altviadogs/', include('AltviaDogs.urls')),
