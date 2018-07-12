@@ -12,11 +12,12 @@
       <title>Confirmation of Change Made</title>
     </head>
     <body>
-      <h1 id="main-header">You {{type_note}} {{date}} {{dog_names}}</h1>
-      <div><form action="index">
+      <h1 id="main-header">{{dog_names}} was {{type_note}} {{date}}</h1>
+      <div>
+        <form action="index">
         {% csrf_token %}
         <input type="submit" class="btn btn-default" value="RETURN HOME">
-      </form>
+        </form>
       </div>
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
