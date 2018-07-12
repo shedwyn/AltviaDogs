@@ -14,7 +14,7 @@
     <body>
       <h1 id="main-header">{{dog_names}} was {{type_note}} {{date}}</h1>
       <div>
-        <form action="index">
+        <form action="{% url 'index' %}" method='post'>
         {% csrf_token %}
         <input type="submit" class="btn btn-default" value="RETURN HOME">
         </form>
