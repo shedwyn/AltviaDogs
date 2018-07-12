@@ -78,19 +78,20 @@ def create_new_dog_day(date_instance):
     return True
 
 
-def remove_dog_from_dog_day(dog_day_id, single_dog):
+def remove_dog_from_dog_day(dog_day_id, dog_id):
     """Remove one dog object from selected DogDay."""
     curr_dog_day = DogDay.objects.get(id=dog_day_id)
     # curr_dog = Dog.objects.get(id=single_dog)
-    curr_dog_day.dogs.remove(Dog.objects.get(id=single_dog))
+    curr_dog_day.dogs.remove(Dog.objects.get(id=dog_id))
     curr_dog_day.save()
     return True
 
 
-def add_dog_to_dog_day(dog_day, single_dog):
+def add_dog_to_dog_day(dog_day_id, dog_id):
     """Add one dog object to selected DogDay."""
-    dog_day.dogs.remove(single_dog)
-    dog_day.save()
+    curr_dog_day = DogDay.objects.get(id=dog_day_id)
+    curr_dog_day.dogs.add(Dog.objects.get(id=dog_id))
+    curr_dog_day.save()
     return True
 
 
@@ -130,9 +131,10 @@ def grab_not_scheduled_dogs(date_instance):
     take in date instance, get correct DogDay instance, pull all Dogs not
     scheduled on that DogDay and return
     """
-    dog_day = grab_correct_dog_day(date_instance)
-    available_dogs = dog_day.dogs.all().order_by('name')
-    return available_dogs
+    scheduled_dogs = grab_scheduled_dogs(date_instance)
+    all_dogs = Dog.objects.all()
+    not_scheduled_dogs = all_dogs.difference(scheduled_dogs)
+    return not_scheduled_dogs
 
 
 def pull_correct_dog_name(dog_id):

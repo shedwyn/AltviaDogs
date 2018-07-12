@@ -33,7 +33,7 @@
             <label for="dog_to_add">
               List of Dogs to Add:
               <select multiple="False" name="dog_to_add">
-                {% for d in scheduled_dogs%}
+                {% for d in not_scheduled_dogs%}
                 <option value="{{d.id}}">{{d.name}}</option>
                 {% endfor %}
               </select>
@@ -48,7 +48,7 @@
           <div>
             <label for="dog_to_remove">List of Dogs to Remove:
               <select multiple="False" name="dog_to_remove">
-                {% for d in not_scheduled_dogs %}
+                {% for d in scheduled_dogs %}
                 <option value="{{d.id}}">{{d.name}}</option>
                 {% endfor %}
               </select>

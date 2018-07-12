@@ -48,7 +48,9 @@ def render_view_days_dogs_page(request):
     corrected_date = logic.determine_correct_date(formatted_date)
     dog_day_id = logic.pull_dog_day_id(corrected_date)
     scheduled_dogs = logic.grab_scheduled_dogs(corrected_date)
+
     not_scheduled_dogs = logic.grab_not_scheduled_dogs(corrected_date)
+
     dog_list = logic.format_list_of_dogs(scheduled_dogs)
     page_fill = {
         'date': corrected_date,
