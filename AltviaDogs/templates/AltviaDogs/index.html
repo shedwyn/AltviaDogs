@@ -13,7 +13,6 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous"
       >
-
       <title>Home Page for Dog Days</title>
     </head>
     <body>
@@ -21,10 +20,10 @@
       <!-- div Today's Date Display -->
       <div>
       <h2><i>Today's Date: {{ date }}</i></h2>
-        <p><h3>These are the dogs at work today:</h3></p>
-        <!--figure out how to make this appear only on Sat & Sun -->
-        <!--<p><i>We don't work on weekends, so you'll have to be satisfied
-        with Monday's list</i></p>-->
+        <p>
+          <h3>These are the dogs at work today:</h3>
+          <i>If today is a weekend, the following Monday is shown</i>
+        </p>
         <p>
           <p><h2>{{ dog_list }}</h2></p>
         </p>
@@ -43,6 +42,19 @@
         <!-- /form CHANGE DATE DISPLAY -->
       </div>
       <!-- /div Today's Date Display -->
+      <!-- div Go to Admin -->
+      <!-- HOLD SNIP FOR LATER, WILL CONTAINERIZ ALL: <div class="container">-- >
+      <!-- div nav -->
+      <div>
+      <!-- HOLD SNIP FOR LATER <div class="row"> -->
+        <!--HOLD SNIP FOR LATER <p class="text-sm-right"> -->
+          <a class="" href="admin" name="admin">
+            GO TO ADMINISTRATION SCREEN
+          </a>
+        </p>
+      </div>
+      <!-- /nav -->
+      <!-- /div Go to Admin -->
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

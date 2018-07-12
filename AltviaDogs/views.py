@@ -27,7 +27,6 @@ def render_index_page(request):
     # stub - can I dip into a variable from another module?
     # weekday = logic.list_of_weekday_values[weekday(year, month, newday)]
     dogs = logic.grab_scheduled_dogs(curr_date)
-    # dog_day_id = logic.pull_dog_day_id(dogs)
     dog_list = logic.format_list_of_dogs(dogs)
     page_fill = {'date': curr_date, 'dog_list': dog_list}
     # page_fill = {'date': curr_date, 'dogs': dogs, 'weekday':weekday}

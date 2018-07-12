@@ -22,7 +22,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
+    # url(r'^admin$', admin.site.urls),
     path('admin/', admin.site.urls, name='admin'),
     url(r'^$', views.render_index_page, name='index'),
     url(r'^viewscreen$', views.render_view_days_dogs_page, name='viewscreen'),
