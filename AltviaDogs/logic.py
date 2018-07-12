@@ -1,4 +1,9 @@
-"""All processing functions for rendering views."""
+"""All processing functions for rendering views.
+
+All "grab" functions (grabbing entire usually grabbing object itself or query
+set or bundle of objects for many to many field) are called from Views.py
+and given a corrected date (weekday date object instance) by Views.py
+"""
 
 from datetime import date
 from calendar import weekday
@@ -103,7 +108,7 @@ def grab_correct_dog_day(date_instance):
     else:
         create_new_dog_day(date_instance)
         dog_day = DogDay.objects.get(date_of_record__exact=date_instance)
-        return dog_day
+    return dog_day
 
 
 def grab_scheduled_dogs(date_instance):
@@ -128,6 +133,17 @@ def grab_not_scheduled_dogs(date_instance):
     dog_day = grab_correct_dog_day(date_instance)
     available_dogs = dog_day.dogs.all().order_by('name')
     return available_dogs
+
+
+def pull_correct_dog_name(dog_id):
+    """Return just the name for the dog id provided."""
+    return Dog.objects.get(id=dog_id).name
+
+
+def pull_dog_day_id(date_instance):
+    """Return the ID associated with DogDay that matches requested date."""
+    dog_day = grab_correct_dog_day(date_instance)
+    return dog_day.id
 
 
 def format_list_of_dogs(dogs):
