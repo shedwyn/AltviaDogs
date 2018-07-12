@@ -65,14 +65,16 @@ def render_confirm_dog_change_page_add(request):
 
     take in request containing the dog instances selected from the View page"
     """
-    dog_to_add = request.POST['dog_to_add']
+    dog_id = request.POST['dog_to_add']
+    dog_day_id = request.POST['dog_day_id']
+    logic.add_dog_to_dog_day(dog_day_id, dog_id)
+    curr_date = logic.grab_date_for_dog_day(dog_day_id)
+    dog_names = logic.pull_correct_dog_name(dog_id)
     type_note = 'added to'
-    curr_date = request.POST['date']
-    dog_day = logic.grab_correct_dog_day(curr_date)
-    logic.add_dog_to_dog_day(dog_day, dog_to_add)
-    dog_names = dog_to_add.name
     page_fill = {
-        'dog_names': dog_names, 'type_note': type_note, 'date': curr_date
+        'dog_names': dog_names,
+        'type_note': type_note,
+        'date': curr_date
     }
     return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)
 
@@ -84,7 +86,6 @@ def render_confirm_dog_change_page_remove(request):
     """
     dog_id = request.POST['dog_to_remove']
     dog_day_id = request.POST['dog_day_id']
-    print(request.POST)
     logic.remove_dog_from_dog_day(dog_day_id, dog_id)
     curr_date = logic.grab_date_for_dog_day(dog_day_id)
     dog_names = logic.pull_correct_dog_name(dog_id)
