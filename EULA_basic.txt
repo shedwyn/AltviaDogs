@@ -1,7 +1,7 @@
 
 End-User License Agreement (EULA) of Daily Dog Manager (aka AltviaDogs)
 
-This End-User License Agreement ("EULA") is a legal agreement between you and FoughFibre 
+This End-User License Agreement ("EULA") is a legal agreement between you and FoughFibre
 
 This EULA agreement governs your acquisition and use of our Daily Dog Manager (aka AltviaDogs) software ("Software") directly from FoughFibre  or indirectly through a FoughFibre  authorized reseller or distributor (a "Reseller").
 
@@ -15,7 +15,7 @@ This EULA agreement shall apply only to the Software supplied by FoughFibre  her
 
 License Grant
 
-FoughFibre  hereby grants you a personal, non-transferable, non-exclusive licence to use the Daily Dog Manager (aka AltviaDogs) software on your devices in accordance with the terms of this EULA agreement.
+FoughFibre  hereby grants you a personal, non-transferable, non-exclusive license to use the Daily Dog Manager (aka AltviaDogs) software on your devices in accordance with the terms of this EULA agreement.
 
 You are permitted to load the Daily Dog Manager (aka AltviaDogs) software (for example a PC, laptop, mobile or tablet) under your control. You are responsible for ensuring your device meets the minimum requirements of the Daily Dog Manager (aka AltviaDogs) software.
 
@@ -33,7 +33,7 @@ Intellectual Property and Ownership
 
 FoughFibre  shall at all times retain ownership of the Software as originally downloaded by you and all subsequent downloads of the Software by you. The Software (and the copyright, and other intellectual property rights of whatever nature in the Software, including any modifications made thereto) are and shall remain the property of FoughFibre .
 
-FoughFibre  reserves the right to grant licences to use the Software to third parties.
+FoughFibre  reserves the right to grant licenses to use the Software to third parties.
 
 Termination
 
