@@ -26,3 +26,4 @@ secrets.py
 Development_Notes.md
 HowToInstall.md
 scrapheap.py
+local_settings.py
