@@ -86,7 +86,7 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dogdaymanager',
+        'NAME': 'dailydogmanager',
         'USER': 'efough',
         'PASSWORD': '',
         'HOST': 'localhost',
