@@ -3,7 +3,7 @@ Django settings for Dog Manager (AltviaDogs) project.
 
 Designed and built by Erin 'Ernie' L. Fough.
 
-June 2018 (start)
+June 2018 (build start)
 contact: shedwyn@gmail.com
 want to know when this was last updated?  See README.md.
 
@@ -18,7 +18,6 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-from . import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
