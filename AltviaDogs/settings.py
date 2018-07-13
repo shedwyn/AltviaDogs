@@ -145,7 +145,7 @@ STATIC_URL = '/static/'
 # Extra places for collectstatic to find static files.
 # Confirm if needs to change when static hosted in AWS
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 # Heroku database notes per DjangoGirls
 
