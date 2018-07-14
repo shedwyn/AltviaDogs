@@ -19,7 +19,6 @@ Includes use of User to authenticate and authorize.
 from django.shortcuts import render
 from . import logic
 # from . import settings
-# from .models import Dog
 from datetime import date
 
 
@@ -30,8 +29,6 @@ def render_index_page(request):
     Include an input field allowing User to select and view a different date.
     """
     curr_date = logic.determine_correct_date(date.today())
-    # stub - can I dip into a variable from another module?
-    # weekday = logic.list_of_weekday_values[weekday(year, month, newday)]
     dogs = logic.grab_scheduled_dogs(curr_date)
     dog_list = logic.format_list_of_dogs(dogs)
     page_fill = {'date': curr_date, 'dog_list': dog_list}

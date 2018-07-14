@@ -13,41 +13,32 @@ and given a corrected date (weekday date object instance) by Views.py
 """
 
 from datetime import date
+from datetime import timedelta
 from calendar import weekday
 from AltviaDogs.models import Dog
 # from AltviaDogs.models import Owner
 from AltviaDogs.models import DogDay
 
-list_of_weekday_values = {
-    0: 'Monday', 1: 'Tuesday', 2: 'Wednesday',
-    3: 'Thursday', 4: 'Friday', 5: 'Saturday', 6: 'Sunday'
-}
+# list_of_weekday_values = {
+#    0: 'Monday', 1: 'Tuesday', 2: 'Wednesday',
+#    3: 'Thursday', 4: 'Friday', 5: 'Saturday', 6: 'Sunday'
+# }
 # ^ should this live within the class as a part of DogDay?
 
 
-def find_weekday_from_calendar(year, month, day):
-    """
-    Determine day of week using list_of_weekday_values.
-
-    take in tuple from an instance of a date and find if weekday or weekend,
-    return True for weekday
-    """
-    return weekday(year, month, day)
-
-
-def move_date_if_wknd(date, day_val):
+def move_date_if_wknd(date_inst, day_val):
     """
     Change day portion of given date to ensure it lands on a weekday.
 
     take in day(date) and associated value from list_of_weekday_values,
     correct weekend date to Monday, return day(date)
     """
-    if day_val == 5:
-        return date + 2
-    elif day_val == 6:
-        return date + 1
+    if date_inst == 5:
+        return date_inst + timedelta(days=2)
+    elif date_inst == 6:
+        return date_inst + timedelta(days=1)
     else:
-        return date
+        return date_inst
 
 
 def determine_correct_date(date_instance):
@@ -57,13 +48,11 @@ def determine_correct_date(date_instance):
     take in instance of date, parse day from instance and test/correct
     for weekend dates, reset and return date instance to new day
     """
-    year = date_instance.year
-    month = date_instance.month
-    day = date_instance.day
-    day_val = find_weekday_from_calendar(year, month, day)
-    newday = move_date_if_wknd(day, day_val)
-    date_instance = date(year, month, newday)
-    return date_instance
+    day_val = weekday(
+        date_instance.year, date_instance.month, date_instance.day
+    )
+    new_day = move_date_if_wknd(date_instance, day_val)
+    return new_day
 
 
 def verify_day_exists(date_instance):
