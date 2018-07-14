@@ -20,6 +20,7 @@ secrets.py
 
 
 .DS_Store
+.idea
 
 
 Development_Notes.md
