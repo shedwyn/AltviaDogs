@@ -44,7 +44,3 @@ def test_finds_weekday_value():
     weekday_val = weekday(date_val.year, date_val.month, date_val.day)
     assert determine_correct_date(date_val) == weekday_val
 
-def test_outputs_adjusted_date_value():
-    date_val = date(2018, 7, 14)
-    adjusted_date = date(2018, 7, 16)
-    assert adjusted_date == determine_correct_date(date_val)
