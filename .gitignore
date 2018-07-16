@@ -19,6 +19,7 @@ mediafiles
 
 .env
 secrets.py
+AWS_DailyDogMgr_Credentials.numbers
 
 
 .DS_Store
