@@ -29,13 +29,15 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG = config('DEBUG', default=True, cast=bool)
+DEBUG = False
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-# ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com', 's3.us-east-2.amazonaws.com']
 
 
 # ---Application definition---
@@ -92,10 +94,13 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME'),
-        'USER': config('DB_USER'),
+        # 'NAME': config('DB_NAME'),
+        'NAME': 'altviadogs',
+        # 'USER': config('DB_USER'),
+        'USER': 'efough',
         'PASSWORD': '',
-        'HOST': config('DB_HOST'),
+        # 'HOST': config('DB_HOST'),
+        'HOST': 'localhost',
         'PORT': ''
     }
 }
@@ -138,10 +143,14 @@ USE_TZ = True
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # blank the following in favor of that for AWS
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
+# STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
+# Not sure about next line - try and see
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # ---Extra places for collectstatic to find static files.---
 
@@ -151,32 +160,24 @@ STATICFILES_DIRS = [
 
 # ---For use of AWS S3 bucket---
 
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'altviadogs'
 # blank the following in case it is part of problem
-AWS_S3_REGION_NAME = 'us-east-2'
+# AWS_S3_REGION_NAME = 'us-east-2'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
 
-print(
-    AWS_ACCESS_KEY_ID,
-    AWS_SECRET_ACCESS_KEY
-)
-
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # per caktus group post, DO NOT load the following (as reported in another
 # tutorial) because it will allow outsiders to overwrite our static:
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-# STATIC_URL = 'http://altviadogs.s3.amazonaws.com/'
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-# Not sure about next line - try and see
-# ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # ---Heroku database notes per DjangoGirls---
 
@@ -188,8 +189,6 @@ DATABASES['default'].update(db_from_env)
 CSRF_COOKIE_SECURE = True
 
 SESSION_COOKIE_SECURE = True
-
-
 
 
 # ---to use local settings---
