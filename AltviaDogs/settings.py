@@ -24,7 +24,7 @@ from decouple import config, Csv
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
+# ---Quick-start development settings - unsuitable for production---
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -37,7 +37,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 # ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
-# Application definition
+# ---Application definition---
 
 INSTALLED_APPS = [
     'AltviaDogs',
@@ -84,7 +84,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'AltviaDogs.wsgi.application'
 
 
-# Database
+# ---Database---
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
@@ -100,7 +100,7 @@ DATABASES = {
 }
 
 
-# Password validation
+# ---Password validation---
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -119,7 +119,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
+# ---Internationalization---
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
@@ -132,30 +132,29 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# ---Static files (CSS, JavaScript, Images)---
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
-STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
-# Confirm if needs to change when static hosted in AWS
+# blank the following in favor of that for AWS
+# STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
+# ---Extra places for collectstatic to find static files.---
 
-# Heroku database notes per DjangoGirls
+# blank out following line in favor of the new version from simpleisbetter
+# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
 
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+STATICFILES_DIRS = [(os.path.join(BASE_DIR), 'AltviaDogs/static'), ]
 
-# For use of AWS S3 bucket
+# ---For use of AWS S3 bucket---
 
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'altviadogs'
-AWS_S3_REGION_NAME = 'us-east-1'
+# blank the following in case it is part of problem
+# AWS_S3_REGION_NAME = 'us-east-1'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
@@ -163,15 +162,23 @@ AWS_S3_OBJECT_PARAMETERS = {
 AWS_LOCATION = 'static'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 # per caktus group post, DO NOT load the following (as reported in another
 # tutorial) because it will allow outsiders to overwrite our static:
 # DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
-STATIC_URL = 'http://altviadogs.s3.amazonaws.com/'
+# STATIC_URL = 'http://altviadogs.s3.amazonaws.com/'
+STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 # Not sure about next line - try and see
 # ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-# to use local settings
+# ---Heroku database notes per DjangoGirls---
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+
+# ---to use local settings---
 
 try:
     from .local_settings import *
