@@ -22,7 +22,8 @@ from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
 # ---Quick-start development settings - unsuitable for production---
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -135,18 +136,18 @@ USE_TZ = True
 # ---Static files (CSS, JavaScript, Images)---
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # blank the following in favor of that for AWS
 # STATIC_URL = '/static/'
 
 # ---Extra places for collectstatic to find static files.---
 
-# blank out following line in favor of the new version from simpleisbetter
-# STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, 'static'),)
-
-STATICFILES_DIRS = [(os.path.join(BASE_DIR), 'AltviaDogs/static'), ]
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, 'static'),
+]
 
 # ---For use of AWS S3 bucket---
 
@@ -154,12 +155,17 @@ AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'altviadogs'
 # blank the following in case it is part of problem
-# AWS_S3_REGION_NAME = 'us-east-1'
+AWS_S3_REGION_NAME = 'us-east-2'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_OBJECT_PARAMETERS = {
     'CacheControl': 'max-age=86400',
 }
 AWS_LOCATION = 'static'
+
+print(
+    AWS_ACCESS_KEY_ID,
+    AWS_SECRET_ACCESS_KEY
+)
 
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
@@ -176,6 +182,14 @@ STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+# --- COOKIES ---
+
+CSRF_COOKIE_SECURE = True
+
+SESSION_COOKIE_SECURE = True
+
+
 
 
 # ---to use local settings---
