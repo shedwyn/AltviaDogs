@@ -18,7 +18,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-# from decouple import config, Csv
+from decouple import config, Csv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,21 +29,21 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = config('SECRET_KEY')
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = config('SECRET_KEY')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = config('DEBUG', default=True, cast=bool)
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
+# DEBUG = False
 
 # ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     '.herokuapp.com',
     's3.us-east-1.amazonaws.com',
     's3.us-east-2.amazonaws.com'
 ]
-
 
 # ---Application definition---
 
@@ -99,13 +99,13 @@ DATABASES = {
     'default': {
         # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        # 'NAME': config('DB_NAME'),
-        'NAME': 'altviadogs',
-        # 'USER': config('DB_USER'),
-        'USER': 'efough',
+        'NAME': config('DB_NAME'),
+        # 'NAME': 'altviadogs',
+        'USER': config('DB_USER'),
+        # 'USER': 'efough',
         'PASSWORD': '',
-        # 'HOST': config('DB_HOST'),
-        'HOST': 'localhost',
+        'HOST': config('DB_HOST'),
+        # 'HOST': 'localhost',
         'PORT': ''
     }
 }
@@ -154,10 +154,10 @@ STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 # ---For use of AWS S3 bucket---
 
-# AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
-# AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
-AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+# AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+# AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'altviadogs'
 AWS_S3_REGION_NAME = 'us-east-2'
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
