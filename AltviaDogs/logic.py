@@ -41,6 +41,11 @@ def move_date_if_wknd(date_inst, day_val):
         return date_inst
 
 
+def find_weekday_value(date_val):
+    """Take in date and return weekday's value per Calendar module."""
+    return weekday(date_val.year, date_val.month, date_val.day)
+
+
 def determine_correct_date(date_instance):
     """
     Correct date to exclude weekends.
@@ -48,10 +53,8 @@ def determine_correct_date(date_instance):
     take in instance of date, parse day from instance and test/correct
     for weekend dates, reset and return date instance to new day
     """
-    day_val = weekday(
-        date_instance.year, date_instance.month, date_instance.day
-    )
-    new_day = move_date_if_wknd(date_instance, day_val)
+    weekday_val = find_weekday_value(date_instance)
+    new_day = move_date_if_wknd(date_instance, weekday_val)
     return new_day
 
 
