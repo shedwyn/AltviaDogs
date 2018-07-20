@@ -1,13 +1,15 @@
 """All Unit Tests for Views and Logic."""
 
-from datetime import date
 from calendar import weekday
+from datetime import date
 from datetime import timedelta
-# from calendar import weekday
+
+
 # from django.test import TestCase
 
 # Create your tests here.
 
+# ------------ testing Determine Correct Date and Subfunctions ------------------
 
 def move_date_if_weekend(date_val, weekday_val):
     if weekday_val == 5:
@@ -65,4 +67,24 @@ def test_determine_correct_date_given_a_Friday():
     assert correct_date == determine_correct_date(date_val)
 
 
+# --------- Test Grab Scheduled Dogs and Subfunctions ------------
 
+
+def create_new_dog_day(date_instance):
+    return True
+
+
+def verify_dog_day_exists(date_instance):
+    return True
+
+
+def grab_correct_dog_day(date_instance):
+    return True
+
+
+def grab_scheduled_dogs(date_instance):
+    return True
+
+
+def test_can_connect_to_database():
+    return True
