@@ -19,7 +19,7 @@
       <h1>Welcome to Dog Days, the Dog Management Application</h1>
       <!-- div Today's Date Display -->
       <div>
-      <h2><i>Today's Date: {{ date }}</i></h2>
+        <h2><i>Today's Date: {{ date }}</i></h2>
         <p>
           <h3>These are the dogs at work today:</h3>
           <i>If today is a weekend, the following Monday is shown</i>
@@ -30,15 +30,16 @@
       </div>
       <div>
         <!-- form CHANGE DATE DISPLAY -->
-        <div><form action="/viewscreen" method="post">
-          {% csrf_token %}
+        <h2>Select or Enter the date you want to view/edit</h2>
+        <form class="form-inline" action="/viewscreen" method="post">
           <!-- remove action="/login" from form for now -->
-          <!-- added action & method after reading web tip -->
-          <h2>Select or Enter the date you want to view/edit</h2>
-          <label for="date_choice"> Select/Enter Date:</label>
-          <input type="date" name="date_choice" placeholder="YYYY-MM-DD">
+          {% csrf_token %}
+          <div>
+            <label for="date_choice"> Select/Enter Date:</label>
+            <input type="date" name="date_choice" class= "form-control" placeholder="YYYY-MM-DD">
+          </div>
           <input type="submit" class="btn btn-default" value="SUBMIT DATE">
-        </form></div>
+        </form>
         <!-- /form CHANGE DATE DISPLAY -->
       </div>
       <!-- /div Today's Date Display -->
