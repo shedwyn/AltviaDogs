@@ -31,7 +31,7 @@
       <div>
         <!-- form CHANGE DATE DISPLAY -->
         <h2>Select or Enter the date you want to view/edit</h2>
-        <form class="form-inline" action="/viewscreen" method="post">
+        <form class="form-inline" action="/viewscreen" method="post" id="date-choice-form">
           <!-- remove action="/login" from form for now -->
           {% csrf_token %}
           <div>
@@ -47,7 +47,7 @@
       <!-- HOLD SNIP FOR LATER, WILL CONTAINERIZ ALL: <div class="container">-- >
       <!-- div nav -->
       <div>
-      <!-- HOLD SNIP FOR LATER <div class="row"> -->
+        <!-- HOLD SNIP FOR LATER <div class="row"> -->
         <!--HOLD SNIP FOR LATER <p class="text-sm-right"> -->
           <a class="" href="admin" name="admin">
             GO TO ADMINISTRATION SCREEN
@@ -58,6 +58,7 @@
       <!-- /div Go to Admin -->
       <!-- Optional JavaScript -->
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script> src=src="{% static 'index_js.js' %}"</script>
       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
