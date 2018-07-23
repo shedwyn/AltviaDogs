@@ -2,8 +2,20 @@
 'use strict';
 //inputs
 
-function checkForBlankValue(aValue){
+function checkForValue(aValue){
   if (aValue !== "") {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
+function checkForValidDate(aValue){
+  if (checkForBlankValue(aValue)===false){
+    return false
+  }
+  if (checkCorrectDateFormat(aValue)===false){
     return false
   }
   else {
@@ -13,17 +25,21 @@ function checkForBlankValue(aValue){
 
 //transform
 
+function formatDateForPost(aValue){
+
+}
+
 //create
 
 function rejectWithMessage(){
-
+  alert("whoops, that wasn't right.  Try again.")
 }
 
 //mains
 
 
 function correctDateEntry(aValue){
-  if (checkForBlankValue(aValue) === false){
+  if (checkForValidDate(aValue) === false){
     rejectWithMessage
   }
   else {
