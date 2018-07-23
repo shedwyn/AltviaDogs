@@ -1,11 +1,40 @@
 // js specific to index Page
+'use strict';
+//inputs
 
-document.getElementById('date_choice').addEventListener('change', function(){
-  console.log('true');
-})
-
-function checkDateEntryFormat(){}
-
-function registerValidationSequence(){
-  var dateChoice = document.getElementById('date_choice').value
+function checkForBlankValue(aValue){
+  if (aValue !== "") {
+    return false
+  }
+  else {
+    return true
+  }
 }
+
+//transform
+
+//create
+
+function rejectWithMessage(){
+
+}
+
+//mains
+
+
+function correctDateEntry(aValue){
+  if (checkForBlankValue(aValue) === false){
+    rejectWithMessage
+  }
+  else {
+    formatDateForPost(aValue)
+  }
+}
+
+//registration
+
+
+document.getElementById('date-choice-form').addEventListener('submit', function(){
+  let dateChoice = document.getElementById('date_choice').value
+  correctDateEntry(dateChoice)
+})
