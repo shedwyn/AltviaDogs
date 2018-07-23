@@ -4,8 +4,8 @@ document.getElementById('date_choice').addEventListener('change', function(){
   console.log('true');
 })
 
-var checkDateEntryFormat(){}
+function checkDateEntryFormat(){}
 
-var registerValidationSequence(){
+function registerValidationSequence(){
   var dateChoice = document.getElementById('date_choice').value
 }
