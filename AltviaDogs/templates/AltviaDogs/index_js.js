@@ -9,33 +9,29 @@ function retrieveDateChoiceValue(){
 function checkForValue(dateChoice){
   if (dateChoice === "") {
     return false
-  }
-  else {
-    return true
-  }
+  } else {
+      return true
+  };
 }
 
 function checkForCorrectDateFormat(dateChoice){
   console.log(dateChoice)
   var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/;
   if (checkForValue(dateChoice) === false && !(dateChoice.match(regexLayout))){
-    console.log("value is okay")
       return false
-    }
-    else {
+  } else {
+
       return true
-    }
+  };
 }
 
 function checkForValidDate(dateChoice){
-  if (checkForCorrectDateFormat(dateChoice)===false){
-    console.log("false")
-    return false
-  }
-  else {
-    console.log("true")
-    return true
-  }
+  if (checkForValue(dateChoice)===false){
+
+    rejectWithMessage
+  } else {
+
+  };
 }
 
 //
@@ -54,12 +50,11 @@ function rejectWithMessage(){
 
 function correctDateEntry(dateChoice){
   if (checkForValidDate(dateChoice) === false){
-    console.log('False')
+    console.log('invalid date')
     rejectWithMessage
-  }
-  else {
-    formatDateForPost(dateChoice)
-    return true
+  } else {
+      formatDateForPost(dateChoice)
+      return true
   }
 }
 
@@ -69,10 +64,12 @@ function correctDateEntry(dateChoice){
 function registerGlobalEventHandlers() {
   // const sourceForm = document.getElementByID('date-choice-form');
   // const dateChoice = document.getElementByID('date_choice').value;
-  console.log(dateChoice)
+  console.log("starting");
   $("#date-choice-form").on("change", function(){
     const dateChoice = retrieveDateChoiceValue;
-    checkForValidDate
+    console.log(dateChoice)
+    console.log(checkForValue(dateChoice));
+    console.log("date was checked")
   });
     //event.preventDefault();
   };
