@@ -18,10 +18,10 @@ function checkForCorrectDateFormat(dateChoice){
   console.log(dateChoice)
   var regexLayout = /^(\d{4})(\-)(\d{2})(\-)(\d{2})$/;
   if (checkForValue(dateChoice) === false && !(dateChoice.match(regexLayout))){
-      return false
+    rejectWithMessage
+    return false
   } else {
-
-      return true
+    return true
   };
 }
 
@@ -67,8 +67,7 @@ function registerGlobalEventHandlers() {
   console.log("starting");
   $("#date-choice-form").on("change", function(){
     const dateChoice = retrieveDateChoiceValue;
-    console.log(dateChoice)
-    console.log(checkForValue(dateChoice));
+    console.log(checkForCorrectDateFormat(dateChoice));
     console.log("date was checked")
   });
     //event.preventDefault();
