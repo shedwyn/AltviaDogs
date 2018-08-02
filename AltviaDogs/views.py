@@ -44,12 +44,16 @@ def render_view_days_dogs_page(request):
     formatted list of that day's dogs along with lists of dogs scheduled
     and not-scheduled for editing purposes
     """
-    raw_date = tuple(
-        int(item) for item in request.POST['date_choice'].split('-')
-    )
-    formatted_date = date(raw_date[0], raw_date[1], raw_date[2])
-    corrected_date = logic.determine_correct_date(formatted_date)
-    dog_day_id = logic.pull_dog_day_id(corrected_date)
+    if request.POST['date_choice']:
+        raw_date = tuple(
+            int(item) for item in request.POST['date_choice'].split('-')
+        )
+        formatted_date = date(raw_date[0], raw_date[1], raw_date[2])
+        corrected_date = logic.determine_correct_date(formatted_date)
+        dog_day_id = logic.pull_dog_day_id(corrected_date)
+    else:
+        dog_day_id = request.POST['dog-day-id']
+
     scheduled_dogs = logic.grab_scheduled_dogs(corrected_date)
 
     not_scheduled_dogs = logic.grab_not_scheduled_dogs(corrected_date)
@@ -79,7 +83,8 @@ def render_confirm_dog_change_page_add(request):
     page_fill = {
         'dog_names': dog_names,
         'type_note': type_note,
-        'date': curr_date
+        'date': curr_date,
+        'dog_day_id': dog_day_id
     }
     return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)
 
@@ -98,6 +103,7 @@ def render_confirm_dog_change_page_remove(request):
     page_fill = {
         'dog_names': dog_names,
         'type_note': type_note,
-        'date': curr_date
+        'date': curr_date,
+        'dog_day_id': dog_day_id
     }
     return render(request, 'AltviaDogs/confirm_dog_change.html', page_fill)
