@@ -37,7 +37,15 @@ function checkForCorrectDateFormat(dateChoice){
 //
 
 function formatDateForPost(dateChoice){
-  console.log("DateForPost");
+  console.log(dateChoice + 'Time to split');
+  var newDate = dateChoice.split('-');
+  console.log('Here is the new date ' + newDate);
+  var dateAsInts = [];
+  for (var i in newDate) {
+    dateAsInts.push(Number(newDate[i]))
+  };
+  console.log('Date As Integer List '+ dateAsInts)
+  return dateAsInts
 }
 
 //
@@ -75,7 +83,7 @@ function registerGlobalEventHandlers() {
     console.log('begin process of checking format');
     if (checkForCorrectDateFormat(dateChoiceValue) === true) {
       console.log('1a - found Correct Date Format in ' + dateChoiceValue);
-      
+      var newDate = formatDateForPost(dateChoiceValue);
       return true;
     } else {
       console.log('1b - found Incorrect Date Format in ' + dateChoiceValue);
