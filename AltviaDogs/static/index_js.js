@@ -37,14 +37,11 @@ function checkForCorrectDateFormat(dateChoice){
 //
 
 function formatDateForPost(dateChoice){
-  console.log(dateChoice + 'Time to split');
   var newDate = dateChoice.split('-');
-  console.log('Here is the new date ' + newDate);
   var dateAsInts = [];
   for (var i in newDate) {
     dateAsInts.push(Number(newDate[i]))
   };
-  console.log('Date As Integer List '+ dateAsInts)
   return dateAsInts
 }
 
