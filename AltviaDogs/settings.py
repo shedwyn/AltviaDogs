@@ -18,10 +18,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import dj_database_url
-from decouple import config
-# from decouple import Csv - can add Csv at end of above as well
+from decouple import config, Csv
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
@@ -35,16 +33,16 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
-# DEBUG = False
 
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-ALLOWED_HOSTS = [
-    '127.0.0.1',
-    '.herokuapp.com',
-    's3.us-east-1.amazonaws.com',
-    's3.us-east-2.amazonaws.com'
-]
+# RETAIN this list, just in case above fails
+# ALLOWED_HOSTS = [
+#    '127.0.0.1',
+#    '.herokuapp.com',
+#    's3.us-east-1.amazonaws.com',
+#    's3.us-east-2.amazonaws.com'
+# ]
 
 # ---Application definition---
 
@@ -98,7 +96,6 @@ WSGI_APPLICATION = 'AltviaDogs.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': config('DB_NAME'),
         # 'NAME': 'altviadogs',
@@ -185,8 +182,7 @@ STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
 ]
 
-
-# ---Heroku database notes per DjangoGirls---
+# ---Heroku database notes---
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
