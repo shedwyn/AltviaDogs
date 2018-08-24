@@ -48,7 +48,6 @@ function formatDateForPost(dateChoice){
 //
 
 function rejectWithMessage(){
-  console.log('Got as Far as running Reject With Message')
   alert("whoops, that wasn't right.  Try again.")
 }
 
@@ -56,7 +55,6 @@ function rejectWithMessage(){
 
 function correctDateEntry(dateChoice){
   if (checkForValidDate(dateChoice) === false){
-    console.log('invalid date');
     return false;
   } else {
       formatDateForPost(dateChoice);
@@ -77,11 +75,9 @@ function registerGlobalEventHandlers() {
   $('#date-choice-form').on('submit', function(event){
     event.preventDefault();
     var dateChoiceValue = retrieveDateChoiceValue();
-    console.log('begin process of checking format');
     if (checkForCorrectDateFormat(dateChoiceValue) === true) {
-      console.log('1a - found Correct Date Format in ' + dateChoiceValue);
       var newDate = formatDateForPost(dateChoiceValue);
-      return true;
+      return newDate;
     } else {
       console.log('1b - found Incorrect Date Format in ' + dateChoiceValue);
       rejectWithMessage();
